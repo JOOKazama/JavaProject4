@@ -2,14 +2,14 @@ import java.io.*;
 import java.text.ParseException;
 import java.util.*;
 
-public class Student_Group implements Comparable<Student_Group>
+public class StudentGroup implements Comparable<StudentGroup>
 {
     String name;
     String input;
     String output;
     Set<Student>set_students=new HashSet<>();
 
-    public Student_Group(String input, String output) throws IOException
+    public StudentGroup(String input, String output) throws IOException
     {
         BufferedReader buffered_reader=new BufferedReader(new FileReader(input));
         this.name=buffered_reader.readLine();
@@ -69,25 +69,25 @@ public class Student_Group implements Comparable<Student_Group>
 
     public String toString()
     {
-        StringBuilder builder=new StringBuilder();
-        for(Student student:this.set_students) { builder.append(student.toString()); }
-        return builder.toString();
+        StringBuilder string_builder=new StringBuilder();
+        for(Student student:this.set_students) { string_builder.append(student.toString()); }
+        return string_builder.toString();
     }
 
-    @Override public int compareTo(Student_Group group)
+    @Override public int compareTo(StudentGroup group)
     {
-        Double o_average=0.0, average=0.0;
+        Double first_average=0.0, second_average=0.0;
 
-        for(Student student:this.set_students) { average+=student.getAverage(); }
-        for(Student student:group.getSet_students()) { o_average+=student.getAverage(); }
+        for(Student student:this.set_students) { first_average+=student.getAverage(); }
+        for(Student student:group.getSet_students()) { second_average+=student.getAverage(); }
 
-        average=average/this.getSet_students().size();
-        o_average=o_average/this.getSet_students().size();
+        first_average=first_average/this.getSet_students().size();
+        second_average=first_average/this.getSet_students().size();
 
-        return average.compareTo(o_average);
+        return first_average.compareTo(second_average);
     }
 
-    public void ShowCompareTo(Student_Group group)
+    public void ShowCompareTo(StudentGroup group)
     {
         switch(this.compareTo(group))
         {
