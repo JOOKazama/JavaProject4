@@ -60,9 +60,9 @@ public class StudentGroup implements Comparable<StudentGroup>
 
     List<Student>SortedByDate()
     {
-        List<Student>list=new ArrayList<>(this.getSet_students());
-        list.sort(new Date_Comparator());
-        return list;
+        List<Student>list_students=new ArrayList<>(this.getSet_students());
+        list_students.sort(new Date_Comparator());
+        return list_students;
     }
 
     void ShowList() { for(Student student:this.SortedByDate()) { System.out.print(student.toString()); } }
@@ -74,22 +74,22 @@ public class StudentGroup implements Comparable<StudentGroup>
         return string_builder.toString();
     }
 
-    @Override public int compareTo(StudentGroup group)
+    @Override public int compareTo(StudentGroup student_group)
     {
         Double first_average=0.0, second_average=0.0;
 
         for(Student student:this.set_students) { first_average+=student.getAverage(); }
-        for(Student student:group.getSet_students()) { second_average+=student.getAverage(); }
+        for(Student student:student_group.getSet_students()) { second_average+=student.getAverage(); }
 
         first_average=first_average/this.getSet_students().size();
-        second_average=first_average/this.getSet_students().size();
+        second_average=second_average/this.getSet_students().size();
 
         return first_average.compareTo(second_average);
     }
 
-    public void ShowCompareTo(StudentGroup group)
+    public void ShowCompareTo(StudentGroup student_group)
     {
-        switch(this.compareTo(group))
+        switch(this.compareTo(student_group))
         {
             case 0:
                 System.out.println("Both groups have equal value of the combined average grades.");
